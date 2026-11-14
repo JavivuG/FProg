@@ -10,38 +10,15 @@
 
 </div>
 
-Inicio real de una partida. Las líneas que empiezan por `>` son lo que escribe el jugador; el programa no las repite.
+Una partida completa, recortada en el centro (`…`). Las líneas que empiezan por `>` son lo que escribe el jugador; el programa no las repite.
 
-```text
-otagrioml
-_________
-____
-____
-____
-___
-___
-> algoritmo
+<p align="center">
+  <img src="docs/screenshots/partida.png" width="390" alt="Partida de Palabras hijas en la terminal: palabra base desordenada garloi, una palabra inválida, la base girola acertada, puntos extra y el resumen final con 48 puntos">
+  <br>
+  <sub>Salida real del programa.</sub>
+</p>
 
-No esta en el diccionario
-otagrioml
-_________
-____
-____
-____
-___
-___
-> logaritmo
-
-otagrioml
-logaritmo
-____
-____
-____
-___
-___
-```
-
-La primera línea es la palabra base desordenada. Debajo están sus huecos y los de las 5 palabras hijas previstas. `algoritmo` usa las mismas letras, pero no cuenta porque una hija tiene que ser más corta que la base.
+La primera línea es la palabra base desordenada. Debajo están sus huecos y los de las 5 palabras hijas previstas, que se rellenan al acertarlas; las hijas no previstas dan un punto extra.
 
 ## En pocas palabras
 
