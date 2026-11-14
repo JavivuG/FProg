@@ -1,29 +1,76 @@
-# Palabras hijas — juego de anagramas en Java
+<div align="center">
 
-Juego de consola en Java en el que hay que descubrir una palabra a partir de sus letras desordenadas y encontrar las palabras que se pueden formar con ellas.
+# Palabras hijas
 
-> Trabajo final de la asignatura **Fundamentos de Programación** · Grado en Ingeniería Informática · Universidad de Valladolid · Curso 2021-2022
+**Juego de anagramas para consola en Java: adivina la palabra oculta y todas las palabras que caben en sus letras**
 
-## Qué hace
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 
-- Elige al azar una **palabra base** de 6 o más letras de `diccionario.txt` y la muestra desordenada.
-- Busca en el diccionario sus **palabras hijas**: palabras más cortas que se forman solo con letras de la base, sin repetir ninguna letra más veces de las que aparece.
-- Elige 5 hijas al azar como **hijas previstas** y las muestra como huecos (`_____`) que se rellenan al acertarlas.
-- Puntúa cada acierto: la palabra base y las hijas previstas suman tantos puntos como letras tienen; cualquier otra hija del diccionario suma un punto extra.
-- Avisa de entradas no válidas (`Palabra invalida`), de palabras que no están en el diccionario y de palabras ya acertadas.
-- Guarda la puntuación acumulada entre partidas en `puntuacion.txt` y pregunta si se quiere jugar otra partida.
+<sub>Fundamentos de Programación · Grado en Ingeniería Informática · Universidad de Valladolid · Curso 2021-2022</sub>
 
-## Tecnologías
+</div>
 
-- Java (solo biblioteca estándar: `java.util.Scanner`, `java.io`, `Math.random`).
+Inicio real de una partida. Las líneas que empiezan por `>` son lo que escribe el jugador; el programa no las repite.
 
-## Aspectos técnicos destacados
+```text
+otagrioml
+_________
+____
+____
+____
+___
+___
+> algoritmo
 
-- **Programación estructurada con métodos estáticos**: toda la lógica está dividida en funciones pequeñas (`desordenar`, `esPalabraHija`, `esValido`, `palabrasHijasPrevistas`, ...) que llama `main`.
-- **Comprobación de palabras hijas**: `esPalabraHija` recorre las letras de la candidata y elimina de la base cada letra usada, de modo que no se puede usar una letra más veces de las que tiene la base.
-- **Desordenado sin repeticiones**: `desordenar` usa un array de `boolean` para no elegir dos veces la misma posición al barajar las letras.
-- **Ficheros de texto**: el diccionario se lee con `Scanner` sobre `File`, y la puntuación se escribe con `PrintWriter`.
-- El diccionario está ordenado por longitud decreciente; el programa se apoya en ese orden para localizar las palabras base.
+No esta en el diccionario
+otagrioml
+_________
+____
+____
+____
+___
+___
+> logaritmo
+
+otagrioml
+logaritmo
+____
+____
+____
+___
+___
+```
+
+La primera línea es la palabra base desordenada. Debajo están sus huecos y los de las 5 palabras hijas previstas. `algoritmo` usa las mismas letras, pero no cuenta porque una hija tiene que ser más corta que la base.
+
+## En pocas palabras
+
+- **Reto**: generar en cada partida un anagrama al azar a partir de un diccionario y comprobar las respuestas del jugador letra a letra.
+- **Solución**: un programa de consola que elige una palabra base, calcula todas sus palabras hijas en el diccionario, puntúa los aciertos y guarda la puntuación acumulada entre partidas.
+- **Demuestra**: diseño de algoritmos sobre cadenas, descomposición en funciones, lectura y escritura de ficheros y validación de la entrada.
+
+## Lo más destacado
+
+- **Comprobación de anagramas por eliminación de letras**: `esPalabraHija` quita de la base cada letra que usa la candidata, así que ninguna letra se puede usar más veces de las que aparece.
+- **Barajado sin repeticiones**: `desordenar` marca con un array de `boolean` las posiciones ya usadas para no repetir ninguna letra al desordenar.
+- **Partidas aleatorias**: la palabra base y las 5 hijas previstas se eligen al azar, y el resto de hijas del diccionario dan un punto extra.
+- **Validación de la entrada**: distingue palabras con letras que no están en la base (`Palabra invalida`), palabras que no están en el diccionario y palabras ya acertadas.
+- **Persistencia**: lee el diccionario con `Scanner` sobre `File` y guarda la puntuación acumulada en `puntuacion.txt` con `PrintWriter`.
+
+## Competencias
+
+| Área | Qué se aplicó |
+|------|---------------|
+| Algoritmia | Recorrido y eliminación de caracteres para validar anagramas; selección aleatoria sin repetición |
+| Diseño | Lógica repartida en funciones pequeñas (`desordenar`, `esPalabraHija`, `esValido`, `palabrasHijasPrevistas`...) que coordina `main` |
+| Ficheros | Lectura del diccionario y escritura de la puntuación con la biblioteca estándar |
+
+## Cómo se juega
+
+- La palabra base tiene 6 letras o más y se muestra desordenada.
+- La base y las hijas previstas suman tantos puntos como letras tienen; cualquier otra hija del diccionario suma un punto.
+- La partida termina al acertar la base y las 5 hijas previstas. Después el programa muestra los puntos de la partida y los acumulados, y pregunta si se quiere jugar otra (`si` para seguir).
+- El diccionario está ordenado de mayor a menor longitud, y el programa se apoya en ese orden para localizar las palabras base.
 
 ## Estructura del repositorio
 
@@ -33,20 +80,16 @@ FProg/
 └── diccionario.txt   # Diccionario de palabras, una por línea
 ```
 
-## Requisitos
+## Cómo ejecutarlo
 
-- JDK (cualquier versión reciente con `javac` y `java`).
-
-## Cómo compilar y ejecutar
-
-Desde la carpeta del repositorio, para que el programa encuentre `diccionario.txt`:
+Requiere un JDK con `javac` y `java`. Ejecútalo desde la carpeta del repositorio, para que el programa encuentre `diccionario.txt`:
 
 ```bash
 javac practica.java
 java practica
 ```
 
-En cada turno se escribe una palabra y se pulsa Intro. Al terminar una partida, escribe `si` para jugar otra. El programa crea `puntuacion.txt` en el directorio de trabajo.
+El programa crea `puntuacion.txt` en el directorio de trabajo.
 
 ## Autoría
 
@@ -57,4 +100,4 @@ Trabajo en pareja (grupo Z9), según la cabecera de `practica.java`:
 
 ---
 
-Forma parte de [UVa-Projects](https://github.com/JavivuG/UVa-Projects).
+<div align="center"><sub>Parte de <a href="https://github.com/JavivuG/UVa-Projects">UVa-Projects</a> · Javier García González</sub></div>
